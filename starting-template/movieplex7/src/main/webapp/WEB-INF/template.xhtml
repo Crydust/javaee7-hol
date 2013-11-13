@@ -77,8 +77,8 @@
             <div id="left">
                 <ui:insert name="left">
                     <h:form>
-                        <h:commandLink action="item1">Item 1</h:commandLink>
-                        <p/><h:outputLink value="item2.xhtml">Item 2</h:outputLink>
+                        <h:commandLink action="item1">Item 1</h:commandLink><br/>
+                        <h:outputLink value="${facesContext.externalContext.requestContextPath}/faces/chat/chatroom.xhtml">Chat Room</h:outputLink>
                     </h:form>
                 </ui:insert>
             </div>
