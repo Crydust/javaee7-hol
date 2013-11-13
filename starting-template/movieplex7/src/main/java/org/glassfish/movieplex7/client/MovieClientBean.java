@@ -7,8 +7,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 import org.glassfish.movieplex7.entities.Movie;
+import org.glassfish.movieplex7.json.MovieWriter;
 
 /**
  *
@@ -56,5 +59,16 @@ public class MovieClientBean {
                 .resolveTemplate("movieId", bean.getMovieId())
                 .request()
                 .delete();
+    }
+
+    public void addMovie() {
+        Movie m = new Movie();
+        m.setId(bean.getMovieId());
+        m.setName(bean.getMovieName());
+        m.setActors(bean.getActors());
+        target
+                .register(MovieWriter.class)
+                .request()
+                .post(Entity.entity(m, MediaType.APPLICATION_JSON));
     }
 }
